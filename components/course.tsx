@@ -1,6 +1,31 @@
 import React, { ChangeEvent, Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
+
+const Switch: React.FC<{
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}> = ({ checked, onChange }) => {
+  const handleChange = () => {
+    onChange(!checked);
+  };
+
+  return (
+    <button
+      type="button"
+      className={`${
+        checked ? "bg-red-500" : "bg-zinc-200"
+      } mx-3 relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
+      onClick={handleChange}
+    >
+      <span
+        className={`${
+          checked ? "translate-x-6" : "translate-x-1"
+        } inline-block h-4 w-4 transform bg-white rounded-full transition-transform`}
+      />
+    </button>
+  );
+};
 
 interface CourseProps {
   index: number;
@@ -20,7 +45,7 @@ interface CourseProps {
 }
 
 const commonStyles =
-  "relative border cursor-default overflow-hidden rounded-lg bg-white hover:bg-zinc-50 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm text-zinc-800 py-2 px-2 text-sm leading-5 text-zinc-900 focus:ring-0";
+  "relative border cursor-default overflow-hidden rounded-lg bg-white hover:bg-zinc-50 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-red-300 sm:text-sm text-zinc-800 py-2 px-2 text-sm leading-5 text-zinc-900 focus:ring-0";
 
 const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
 const GradeDropdown: React.FC<{
@@ -51,7 +76,7 @@ const GradeDropdown: React.FC<{
                 key={gradeIdx}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-5 ${
-                    active ? "bg-teal-100 text-teal-900" : "text-zinc-900"
+                    active ? "bg-red-100 text-red-900" : "text-zinc-900"
                   }`
                 }
                 value={grade}
@@ -87,7 +112,7 @@ const HonorsCheckbox: React.FC<{
   return (
     <div className="inline-flex items-center">
       <label
-        className="relative flex items-center p-0 rounded-full cursor-pointer"
+        className="relative flex items-center p-0 ml-6 rounded-full cursor-pointer "
         htmlFor={`honors-checkbox-${value}`}
       >
         <input
@@ -95,7 +120,7 @@ const HonorsCheckbox: React.FC<{
           type="checkbox"
           checked={value}
           onChange={handleChange}
-          className="w-4 h-4 text-teal-600 bg-zinc-100 border-zinc-300 rounded focus:ring-teal-500"
+          className="w-4 h-4 text-red-600 bg-zinc-100 border-zinc-300 rounded focus:ring-red-500"
         />
       </label>
     </div>
@@ -118,8 +143,8 @@ const Course: React.FC<CourseProps> = ({
     onDisable(index);
   };
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
+  const handleSwitchChange = (checked: boolean) => {
+    setIsChecked(checked);
     handleDisable();
   };
 
@@ -133,7 +158,7 @@ const Course: React.FC<CourseProps> = ({
       </td>
       <td>
         <input
-          className={`${commonStyles} w-56`}
+          className={`${commonStyles}`}
           type="text"
           value={course.name}
           placeholder="Course Name"
@@ -151,19 +176,14 @@ const Course: React.FC<CourseProps> = ({
         <input
           className={`${commonStyles} w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
           type="number"
-          value={course.credits}
+          value={course.credits * 1}
           placeholder="--"
           onChange={(e) => handleChange("credits", e.target.value)}
           disabled={isChecked}
         />
       </td>
       <td>
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-          className="w-4 h-4 text-teal-600 bg-zinc-100 border-zinc-300 rounded focus:ring-teal-500"
-        />
+        <Switch checked={isChecked} onChange={handleSwitchChange} />
       </td>
     </tr>
   );

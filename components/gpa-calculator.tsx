@@ -40,7 +40,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Math",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: true,
       credits: 5,
       disabled: false,
@@ -48,7 +48,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "English",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: true,
       credits: 5,
       disabled: false,
@@ -56,7 +56,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "History",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: true,
       credits: 5,
       disabled: false,
@@ -64,7 +64,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Science",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: true,
       credits: 5,
       disabled: false,
@@ -72,7 +72,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Language",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: true,
       credits: 5,
       disabled: false,
@@ -80,7 +80,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Elective Class",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: false,
       credits: 2.5,
       disabled: false,
@@ -88,7 +88,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Elective Class",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: false,
       credits: 2.5,
       disabled: false,
@@ -96,7 +96,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Health",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: false,
       credits: 1.25,
       disabled: false,
@@ -104,7 +104,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Academy",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: false,
       credits: 5,
       disabled: false,
@@ -112,7 +112,7 @@ const GPACalculator: React.FC = () => {
     {
       name: "Academy",
       grade: "A+",
-      gradePoints: 0,
+      gradePoints: 5.3,
       isHonors: false,
       credits: 5,
       disabled: false,
@@ -142,10 +142,10 @@ const GPACalculator: React.FC = () => {
   };
 
   const calculateGPA = () => {
-    const totalCredits = courses.reduce(
-      (sum, course) => (course.disabled ? sum : sum + course.credits),
-      0
-    );
+    const totalCredits = courses.reduce((sum, course) => {
+      if (course.disabled) return sum;
+      return sum * 1 + course.credits * 1;
+    }, 0);
     const totalGradePoints = courses.reduce((sum, course) => {
       if (course.disabled) return sum;
       const isHonors = course.isHonors;
@@ -155,6 +155,8 @@ const GPACalculator: React.FC = () => {
       return sum + gradePoints * course.credits;
     }, 0);
     const gpaValue = totalCredits === 0 ? 0 : totalGradePoints / totalCredits;
+    console.log(totalCredits + " " + totalGradePoints);
+
     setGPA(gpaValue);
   };
 
@@ -164,7 +166,7 @@ const GPACalculator: React.FC = () => {
       {
         name: "",
         grade: "A+",
-        gradePoints: 0,
+        gradePoints: 5.3,
         isHonors: true,
         credits: 0,
         disabled: false,
@@ -175,7 +177,7 @@ const GPACalculator: React.FC = () => {
   const commonStyles = "text-zinc-800 mx-1 mb-1 p-1 px-2 py-1 mx-1 font-bold";
 
   const buttonStyles =
-    "px-5 py-2.5 bg-teal-100 hover:bg-teal-200 hover:text-teal-600 box-content text-teal-500 rounded-lg text-sm font-medium transform transition duration-100";
+    "px-5 py-2.5 bg-red-100 hover:bg-red-200 hover:text-red-600 box-content text-red-500 rounded-lg text-sm font-medium transform transition duration-100";
 
   return (
     <div className="inline-block bg-white shadow-sm border shadow-zinc-500/2 rounded-2xl p-6 pb-16">
@@ -191,7 +193,7 @@ const GPACalculator: React.FC = () => {
                   </th>
                   <th className={`${commonStyles} w-20 text-left`}>Grade</th>
                   <th className={`${commonStyles} w-20 text-left`}>Credits</th>
-                  <th className={`${commonStyles} w-20 text-left`}>Action</th>
+                  {/* <th className={`${commonStyles} w-20 text-left`}>Action</th> */}
                 </tr>
                 {courses.map((course, index) => (
                   <Course
@@ -226,13 +228,16 @@ const GPACalculator: React.FC = () => {
 
             <div className="absolute text-2xl font-bold text-black">
               <AnimatedNumbers
-                className={"text-2xl font-bold text-black"}
+                className={
+                  "text-2xl font-bold text-black" + (gpa == 0) ? "mx-1" : "mx-2"
+                }
                 transitions={(index) => ({
                   type: "spring",
                   duration: index / 4 + 0.25,
                 })}
                 animateToNumber={gpa.toFixed(2)}
               />
+              {/* <p className={}>{0}</p> */}
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="h-auto bg-white pb-16">
+    <div className="h-screen bg-white pb-16">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         {/* Title */}
         <div className="mt-5 max-w-2xl">
@@ -39,7 +39,7 @@ export const HomePage: React.FC = () => {
           <div className="w-full text-sm text-left rtl:text-right text-zinc-900">
             <div className="relative overflow-x-auto">
               <table className="text-sm text-left rtl:text-right text-zinc-500 rounded-lg overflow-hidden shadow mx-10 my-10">
-                <thead className="text-xs !text-teal-600 uppercase bg-teal-100 ">
+                <thead className="text-xs !text-red-600 uppercase bg-red-100 ">
                   <tr>
                     {headings.map((heading, index) => (
                       <th key={index} scope="col" className="px-6 py-3">

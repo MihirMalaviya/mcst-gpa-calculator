@@ -21,19 +21,16 @@ export default function RootLayout({
         url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
       </style>
 
-      <body className={inter.className}>
-        {children}
+      <body className={inter.className}>{children}</body>
 
-        <footer>
-          <div className="text-center bg-white py-5 ">
-            <p className="text-zinc-500">
-              Website coded by Mihir Malaviya using React and Tailwind and
-              hosted on Vercel. Idea by Siddesh Narayana.
-            </p>
-          </div>
-        </footer>
-      </body>
-
+      <footer>
+        <div className="text-center bg-white py-5 ">
+          <p className="text-zinc-500">
+            Website coded by Mihir Malaviya using React and Tailwind and hosted
+            on Vercel. Idea by Siddesh Narayana.
+          </p>
+        </div>
+      </footer>
       {/* <footer className="p-4 bg-white sm:p-6">
         <div className="auto w-screen-xl">
           <div className="md:flex md:justify-between">
