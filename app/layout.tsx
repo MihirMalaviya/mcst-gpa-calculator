@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MCST GPA Calculator",
@@ -16,21 +16,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-      </style>
+      <head>
+        <style>
+          @import
+          url(&apos;https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap&apos;);
+        </style>
+      </head>
+      <body>
+        {children}
 
-      <body className={inter.className}>{children}</body>
+        <footer>
+          <div className="text-center bg-white py-5 ">
+            <p className="text-zinc-500">
+              Website coded by Mihir Malaviya using React and Tailwind and
+              hosted on Vercel. Idea by Siddesh Narayana.
+            </p>
+          </div>
+        </footer>
+      </body>
 
-      <footer>
-        <div className="text-center bg-white py-5 ">
-          <p className="text-zinc-500">
-            Website coded by Mihir Malaviya using React and Tailwind and hosted
-            on Vercel. Idea by Siddesh Narayana.
-          </p>
-        </div>
-      </footer>
       {/* <footer className="p-4 bg-white sm:p-6">
         <div className="auto w-screen-xl">
           <div className="md:flex md:justify-between">

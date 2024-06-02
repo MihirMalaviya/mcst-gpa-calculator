@@ -12,8 +12,11 @@ interface CourseData {
   credits: number;
   disabled: boolean;
 }
+interface GradeMap {
+  [key: string]: number;
+}
 
-const grade_honors = {
+const grade_honors: GradeMap = {
   "A+": 5.3,
   A: 5.0,
   "A-": 4.7,
@@ -24,7 +27,7 @@ const grade_honors = {
   C: 3.0,
 };
 
-const grade_regular = {
+const grade_regular: GradeMap = {
   "A+": 4.3,
   A: 4.0,
   "A-": 3.7,

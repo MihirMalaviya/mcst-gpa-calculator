@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const DonutChart = ({ percentColored }) => {
+interface DonutChartProps {
+  percentColored: number;
+}
+
+const DonutChart: React.FC<DonutChartProps> = ({ percentColored }) => {
   const [chartOptions, setChartOptions] = useState({
     chart: {
       type: "pie",
@@ -57,9 +61,7 @@ const DonutChart = ({ percentColored }) => {
     }));
   }, [percentColored]);
 
-  return (
-    <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-  );
+  return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
 
 export default DonutChart;
