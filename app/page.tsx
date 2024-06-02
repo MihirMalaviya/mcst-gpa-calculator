@@ -10,7 +10,7 @@ import React, { useState } from "react";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="h-min-screen bg-white pb-16">
+    <div className="min-h-screen bg-white pb-16">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         {/* Title */}
         <div className="mt-5 max-w-2xl">
