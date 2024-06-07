@@ -180,7 +180,7 @@ const GPACalculator: React.FC = () => {
   const commonStyles = "text-zinc-800 mx-1 mb-1 p-1 px-2 py-1 mx-1 font-bold";
 
   const buttonStyles =
-    "px-5 py-2.5 bg-red-100 hover:bg-red-200 hover:text-red-600 box-content text-red-500 rounded-lg text-sm font-medium transform transition duration-100";
+    "px-5 py-2.5 bg-stone-200 hover:bg-red-200 hover:text-red-600 box-content text-red-600 rounded-lg text-sm font-medium transform transition duration-100";
 
   return (
     <div className="inline-block bg-white shadow-sm border shadow-zinc-500/2 rounded-2xl p-6 pb-16">

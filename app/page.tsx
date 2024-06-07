@@ -13,14 +13,14 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-white pb-16">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         {/* Title */}
-        <div className="mt-5 max-w-2xl">
-          <h1 className="block font-black text-zinc-800 text-4xl md:text-5xl lg:text-5xl ">
+        <div className="mt-5 mb-20">
+          <h1 className="block w-fit mx-auto font-black text-zinc-800 text-4xl md:text-5xl lg:text-5xl ">
             MCST GPA Calculator
           </h1>
         </div>
         {/* End Title */}
 
-        <div className="mt-10 max-w-3xl">
+        {/* <div className="mt-10 max-w-3xl">
           <p className="text-xl text-stone-600 mb-16">
             Hello! To use this calculator- here&apos;s how it works: Step One-
             Figure out your Numerical grade value for each of your classes- for
@@ -30,34 +30,32 @@ const HomePage: React.FC = () => {
             grade column. Once filling out each of the categories press the
             Calculate GPA buttom for your final GPA score
           </p>
-        </div>
+        </div> */}
       </div>
 
-      <div className="flex justify-center">
-        <div className="flex justify-center">
-          <div className="flex justify-center">
-            <GPACalculator />
-          </div>
+      <div className="flex justify-center flex-row w-fit mx-auto">
+        {/* <div className="flex justify-center"> */}
+        <GPACalculator />
+        {/* </div> */}
 
-          <div className="w-full text-sm text-left rtl:text-right text-zinc-900">
-            <div className="relative overflow-x-auto">
-              <table className="text-sm text-left rtl:text-right text-zinc-500 rounded-lg overflow-hidden shadow mx-10 my-10">
-                <thead className="text-xs !text-red-600 uppercase bg-red-100 ">
-                  <tr>
-                    {headings.map((heading, index) => (
-                      <th key={index} scope="col" className="px-6 py-3">
-                        {heading}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row, index) => (
-                    <TableRow key={index} {...row} />
+        <div className="w-full text-sm text-left rtl:text-right text-zinc-900">
+          <div className="relative overflow-x-auto">
+            <table className="text-sm text-left rtl:text-right text-zinc-500 rounded-lg overflow-hidden shadow mx-10 my-10">
+              <thead className="text-xs !text-red-600 uppercase bg-stone-200">
+                <tr>
+                  {headings.map((heading, index) => (
+                    <th key={index} scope="col" className="px-6 py-3 pt-5">
+                      {heading}
+                    </th>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, index) => (
+                  <TableRow key={index} {...row} />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -144,7 +144,7 @@ const Course: React.FC<CourseProps> = ({
   };
 
   const handleSwitchChange = (checked: boolean) => {
-    setIsChecked(checked);
+    setIsChecked(!checked);
     handleDisable();
   };
 
@@ -183,7 +183,7 @@ const Course: React.FC<CourseProps> = ({
         />
       </td>
       <td>
-        <Switch checked={isChecked} onChange={handleSwitchChange} />
+        <Switch checked={!isChecked} onChange={handleSwitchChange} />
       </td>
     </tr>
   );

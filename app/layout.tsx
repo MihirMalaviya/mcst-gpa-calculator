@@ -28,8 +28,9 @@ export default function RootLayout({
         <footer>
           <div className="text-center bg-white py-5 ">
             <p className="text-zinc-500">
-              Website coded by Mihir Malaviya using React and Tailwind and
-              hosted on Vercel. Idea by Siddesh Narayana.
+              Website built by Mihir Malaviya.{" "}
+              {/* using React and Tailwind and hosted on Vercel. */}
+              Backend calculations by Siddesh Narayana.
             </p>
           </div>
         </footer>
