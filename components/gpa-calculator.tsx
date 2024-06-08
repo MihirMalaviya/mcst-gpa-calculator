@@ -3,6 +3,15 @@ import Course from "./course";
 import Result from "./result";
 import DonutChart from "../components/grade-donut-chart";
 import AnimatedNumbers from "react-animated-numbers";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface CourseData {
   name: string;
@@ -183,10 +192,11 @@ const GPACalculator: React.FC = () => {
     "px-5 py-2.5 bg-stone-200 hover:bg-red-200 hover:text-red-600 box-content text-red-600 rounded-lg text-sm font-medium transform transition duration-100";
 
   return (
-    <div className="inline-block bg-white shadow-sm border shadow-zinc-500/2 rounded-2xl p-6 pb-16">
+    // <div className="inline-block bg-white shadow-sm border shadow-zinc-500/2 rounded-2xl p-6 pb-20">
+    <Card className="p-6 pb-20">
       <div className="flex">
         <div className="">
-          <div className="mb-4 h-full">
+          <div className="pb-5 h-full">
             <table>
               <tbody>
                 <tr>
@@ -211,16 +221,17 @@ const GPACalculator: React.FC = () => {
             </table>
           </div>
           <div className="inset-x-0 bottom-0">
-            <a
-              href="#_"
+            <Button
+              variant="outline"
+              size="lg"
               onClick={addCourse}
-              className={`${buttonStyles} ml-1 mr-5`}
+              className="mr-5"
             >
               Add Course
-            </a>
-            <a href="#_" onClick={calculateGPA} className={`${buttonStyles}`}>
+            </Button>
+            <Button variant="default" size="lg" onClick={calculateGPA}>
               Calculate GPA
-            </a>
+            </Button>
           </div>
         </div>
         <div className="ml-10 m-5 w-72 inline-block">
@@ -245,7 +256,7 @@ const GPACalculator: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

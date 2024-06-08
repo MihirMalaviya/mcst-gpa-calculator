@@ -7,14 +7,21 @@ const GPACalculator = dynamic(() => import("../components/gpa-calculator"), {
 });
 
 import React, { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
 
 const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white pb-16">
-      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <div className="max-w-[50rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Title */}
-        <div className="mt-5 mb-20">
-          <h1 className="block w-fit mx-auto font-black text-zinc-800 text-4xl md:text-5xl lg:text-5xl ">
+        <div className="mt-5 mb-10">
+          <h1 className="block w-fit mx-auto font-black text-zinc-800 text-4xl md:text-5xl lg:text-5xl mb-20">
             MCST GPA Calculator
           </h1>
         </div>
@@ -40,8 +47,8 @@ const HomePage: React.FC = () => {
 
         <div className="w-full text-sm text-left rtl:text-right text-zinc-900">
           <div className="relative overflow-x-auto">
-            <table className="text-sm text-left rtl:text-right text-zinc-500 rounded-lg overflow-hidden shadow mx-10 my-10">
-              <thead className="text-xs !text-red-600 uppercase bg-stone-200">
+            <Card className="text-sm text-left rtl:text-right text-zinc-700 rounded-lg overflow-hidden shadow mx-10 my-10">
+              <thead className="text-xs bg-primary text-primary-foreground uppercase">
                 <tr>
                   {headings.map((heading, index) => (
                     <th key={index} scope="col" className="px-6 py-3 pt-5">
@@ -55,9 +62,27 @@ const HomePage: React.FC = () => {
                   <TableRow key={index} {...row} />
                 ))}
               </tbody>
-            </table>
+            </Card>
           </div>
         </div>
+      </div>
+      <div className="w-2/3 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <Accordion type="single" collapsible className="w-full mt-10">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Why isn&apos;t gym a course?</AccordionTrigger>
+            <AccordionContent>
+              Gym is not counted in your GPA in MCST
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>What do the switches do?</AccordionTrigger>
+            <AccordionContent>
+              They take a course out of it being factored into your calculation.
+              For example, if for a year you only took one elective you would
+              switch the other one off.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
 
       {/* <CardStackDemo /> */}

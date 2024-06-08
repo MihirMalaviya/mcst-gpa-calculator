@@ -1,31 +1,9 @@
 import React, { ChangeEvent, Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-
-const Switch: React.FC<{
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}> = ({ checked, onChange }) => {
-  const handleChange = () => {
-    onChange(!checked);
-  };
-
-  return (
-    <button
-      type="button"
-      className={`${
-        checked ? "bg-red-500" : "bg-zinc-200"
-      } mx-3 relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
-      onClick={handleChange}
-    >
-      <span
-        className={`${
-          checked ? "translate-x-6" : "translate-x-1"
-        } inline-block h-4 w-4 transform bg-white rounded-full transition-transform`}
-      />
-    </button>
-  );
-};
+import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
 
 interface CourseProps {
   index: number;
@@ -101,32 +79,6 @@ const GradeDropdown: React.FC<{
   );
 };
 
-const HonorsCheckbox: React.FC<{
-  value: boolean;
-  onChange: (value: boolean) => void;
-}> = ({ value, onChange }) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.checked);
-  };
-
-  return (
-    <div className="inline-flex items-center">
-      <label
-        className="relative flex items-center p-0 ml-6 rounded-full cursor-pointer "
-        htmlFor={`honors-checkbox-${value}`}
-      >
-        <input
-          id={`honors-checkbox-${value}`}
-          type="checkbox"
-          checked={value}
-          onChange={handleChange}
-          className="w-4 h-4 text-red-600 bg-zinc-100 border-zinc-300 rounded focus:ring-red-500"
-        />
-      </label>
-    </div>
-  );
-};
-
 const Course: React.FC<CourseProps> = ({
   index,
   course,
@@ -151,15 +103,24 @@ const Course: React.FC<CourseProps> = ({
   return (
     <tr className={isChecked ? "opacity-50" : "opacity-100"}>
       <td>
-        <HonorsCheckbox
-          value={course.isHonors}
-          onChange={(value) => handleChange("isHonors", value)}
+        <Checkbox
+          checked={course.isHonors}
+          onCheckedChange={(checked) => handleChange("isHonors", checked)}
+          className="ml-2"
         />
       </td>
       <td>
-        <input
+        {/* <input
           className={`${commonStyles}`}
           type="text"
+          value={course.name}
+          placeholder="Course Name"
+          onChange={(e) => handleChange("name", e.target.value)}
+          disabled={isChecked}
+        /> */}
+        <Input
+          type="text"
+          className="w-60 focus:!ring-0"
           value={course.name}
           placeholder="Course Name"
           onChange={(e) => handleChange("name", e.target.value)}
@@ -173,9 +134,9 @@ const Course: React.FC<CourseProps> = ({
         />
       </td>
       <td>
-        <input
-          className={`${commonStyles} w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
+        <Input
           type="number"
+          className="w-60 focus:!ring-0"
           value={course.credits * 1}
           placeholder="--"
           onChange={(e) => handleChange("credits", e.target.value)}
@@ -183,7 +144,11 @@ const Course: React.FC<CourseProps> = ({
         />
       </td>
       <td>
-        <Switch checked={!isChecked} onChange={handleSwitchChange} />
+        <Switch
+          checked={!isChecked}
+          onCheckedChange={handleSwitchChange}
+          className="ml-2"
+        />
       </td>
     </tr>
   );
