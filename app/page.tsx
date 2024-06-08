@@ -47,11 +47,15 @@ const HomePage: React.FC = () => {
 
         <div className="w-full text-sm text-left rtl:text-right text-zinc-900">
           <div className="relative overflow-x-auto">
-            <Card className="text-sm text-left rtl:text-right text-zinc-700 rounded-lg overflow-hidden shadow mx-10 my-10">
+            <Card className=" text-sm text-left rtl:text-right text-zinc-700 rounded-lg overflow-hidden mx-10 my-10">
               <thead className="text-xs bg-primary text-primary-foreground uppercase">
                 <tr>
                   {headings.map((heading, index) => (
-                    <th key={index} scope="col" className="px-6 py-3 pt-5">
+                    <th
+                      key={index}
+                      scope="col"
+                      className="w-full px-6 py-3 pt-5"
+                    >
                       {heading}
                     </th>
                   ))}
